@@ -3,6 +3,7 @@ package com.devsuperior.dsdeliver.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -95,6 +96,14 @@ public class Order implements Serializable {
 
 	public void setStatus(OrderStatus status) {
 		this.status = status;
+	}
+	
+	public Double getTotal() {
+		double sum = 0;
+		for (Product p : products) {
+			sum += p.getPrice();
+		}
+		return sum;
 	}
 
 	public Set<Product> getProducts() {
